@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>J.Aizann Photography | Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+  <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --purple: #44126e;
+      --dark: #252326;
+      --footer-bg: #44126e;
+    }
+    body {
+      background-color: var(--dark);
+      font-family: 'Avenir', sans-serif;
+      color: #fff;
+    }
+    h1, h2, h3, .serif { font-family: 'Cinzel', serif; }
+    a { text-decoration: none; transition: color 0.3s ease; }
+
+   .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #af53ee;
+      font-family: 'Cinzel', serif;
+    }
+
+    .navbar-logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #af53ee;
+    }
+
+    .navbar-links {
+      list-style: none;
+      display: flex;
+      gap: 150px;
+    }
+
+    .navbar-links li a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-links li a:hover,
+    .navbar-links li a.active {
+      color: #af53ee;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-icon {
+      height: 20px;
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+    }
+
+    .login-link {
+      color: #af53ee;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+    }
+
+
+    /* Main container */
+    .container {
+      max-width: 900px;
+      margin: 50px auto 80px;
+      padding: 0 20px;
+    }
+
+    /* News Feed heading */
+    .news-feed-title {
+      color: #9a64ff;
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      user-select: none;
+    }
+
+    /* Blog posts */
+    .blog-post {
+      display: flex;
+      background-color: #222222;
+      border: 1px solid #444;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgb(0 0 0 / 0.4);
+    }
+
+    .post-image {
+      flex-shrink: 0;
+      width: 35%;
+      object-fit: cover;
+      user-select: none;
+    }
+
+    .post-content {
+      padding: 22px 25px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .author-avatar, .author-name {
+      cursor: pointer;
+    }
+
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      margin-right: 12px;
+      object-fit: cover;
+      user-select: none;
+      border: 2px solid #9a64ff;
+      transition: transform 0.2s ease;
+    }
+    .author-avatar:hover {
+      transform: scale(1.05);
+    }
+
+    .author-name {
+      color: #c4cbd0;
+      font-weight: 600;
+      font-size: 0.9rem;
+      user-select: none;
+      margin-right: 12px;
+      transition: color 0.3s ease;
+    }
+    .author-name:hover {
+      color: #9a64ff;
+    }
+
+    .post-meta {
+      font-size: 0.8rem;
+      color: #a0a7ad;
+      margin-left: auto;
+      user-select: none;
+    }
+
+    .post-title {
+      font-size: 1.6rem;
+      margin: 8px 0 15px;
+      line-height: 1.2;
+      color: #b0c5c8;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .post-summary {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #c1c9cd;
+      user-select: text;
+    }
+
+    .post-footer {
+      margin-top: 15px;
+      font-size: 0.85rem;
+      color: #868e92;
+      display: flex;
+      gap: 25px;
+      user-select: none;
+      align-items: center;
+    }
+
+    .comments-btn {
+      cursor: pointer;
+      color: #868e92;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.3s ease;
+    }
+    .comments-btn:hover {
+      color: #9a64ff;
+    }
+
+    .heart-icon {
+      margin-left: auto;
+      cursor: pointer;
+      fill: transparent;
+      stroke: #868e92;
+      transition: stroke 0.3s ease, fill 0.3s ease;
+      width: 20px;
+      height: 20px;
+    }
+    .heart-icon:hover {
+      stroke: #9a64ff;
+      fill: #9a64ff;
+    }
+
+    /* Popup common styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .popup-content {
+      background: #1a1a1a;
+      border-radius: 10px;
+      max-width: 450px;
+      width: 100%;
+      padding: 30px;
+      color: #d0d8db;
+      position: relative;
+      box-shadow: 0 0 20px #9a64ffaa;
+      user-select: text;
+      font-family: 'Cinzel', serif;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #9a64ff;
+      border: none;
+      background: none;
+    }
+
+    /* Author popup content */
+    .author-popup-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid #9a64ff;
+    }
+
+    .author-popup-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .author-popup-bio {
+      font-size: 1.1rem;
+      color: #b0bfc3;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    /* Comments popup content */
+    .comments-popup {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .comment {
+      padding: 10px 15px;
+      border-bottom: 1px solid #444;
+    }
+    .comment:last-child {
+      border-bottom: none;
+    }
+    .comment-author {
+      font-weight: 700;
+      color: #9a64ff;
+      margin-bottom: 3px;
+      font-size: 0.95rem;
+    }
+    .comment-text {
+      font-size: 0.9rem;
+      color: #c0c8cc;
+      line-height: 1.3;
+    }
+
+    .add-comment-form textarea {
+      width: 100%;
+      resize: vertical;
+      min-height: 70px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #2a2a2a;
+      color: #d0d8db;
+      padding: 8px 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .add-comment-form button {
+      background: #9a64ff;
+      border: none;
+      padding: 10px 20px;
+      font-weight: 600;
+      font-family: 'Cinzel', serif;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .add-comment-form button:hover {
+      background: #7a3ed3;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .blog-post {
+        flex-direction: column;
+      }
+      .post-image {
+        width: 100%;
+        height: 200px;
+      }
+      .post-footer {
+        flex-wrap: wrap;
+      }
+    }
+
+     .footer {
+      background: #44126e;
+      color: #fff;
+      padding: 36px 0 10px 0;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      margin-top: 80px;
+    }
+    .footer span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.13rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">J.AIZANN</div>
+    <ul class="navbar-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <div title="Search">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d0d8db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+      <div>Log In</div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1 class="news-feed-title">News Feed</h1>
+
+    <article class="blog-post" data-post-id="1">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Delicious pasta dish" class="post-image" />
+      <div class="post-content">
+        <div class="post-header">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Helen" class="author-avatar" data-author-id="1" />
+          <div class="author-name" data-author-id="1">Helen</div>
+          <div class="post-meta">Apr 27 · 4 min read</div>
+        </div>
+        <h2 class="post-title">Savor the Secrets of Exquisite Cuisine That Will Elevate Your Culinary Experience</h2>
+        <p class="post-summary">Cuisine is not just about food; it is a celebration of culture, tradition, and creativity. Exquisite food goes beyond basic nourishment,...</p>
+        <div class="post-footer">
+          <div>2 views</div>
+          <div class="comments-btn" data-post-id="1">0 comments
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" style="margin-left:5px;">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          </div>
+          <svg class="heart-icon" viewBox="0 0 24 24">
+            <path d="M12 21C12 21 4 14 4 8a4 4 0 0 1 8-3 4 4 0 0 1 8 3c0 6-8 13-8 13z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <article class="blog-post" data-post-id="2">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Soccer players on field" class="post-image" />
+      <div class="post-content">
+        <div class="post-header">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Victor" class="author-avatar" data-author-id="2" />
+          <div class="author-name" data-author-id="2">Victor</div>
+          <div class="post-meta">Apr 27 · 3 min read</div>
+        </div>
+        <h2 class="post-title">For the Goal</h2>
+        <p class="post-summary">Soccer photography is more than just taking pictures; it's about capturing the passion, energy, and excitement of the game. With every...</p>
+        <div class="post-footer">
+          <div>0 views</div>
+          <div class="comments-btn" data-post-id="2">0 comments
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" style="margin-left:5px;">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          </div>
+          <svg class="heart-icon" viewBox="0 0 24 24">
+            <path d="M12 21C12 21 4 14 4 8a4 4 0 0 1 8-3 4 4 0 0 1 8 3c0 6-8 13-8 13z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+        </div>
+        
+      </div>\
+      
+    </article>
+  </main>
+
+  <!-- Author Popup -->
+  <div id="author-popup" class="popup-overlay" aria-hidden="true">
+    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="author-name-title">
+      <button class="popup-close" aria-label="Close author profile">&times;</button>
+      <img src="" alt="" class="author-popup-avatar" />
+      <h2 class="author-popup-name" id="author-name-title"></h2>
+      <p class="author-popup-bio"></p>
+    </div>
+  </div>
+
+  <!-- Comments Popup -->
+  <div id="comments-popup" class="popup-overlay" aria-hidden="true">
+    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="comments-title">
+      <button class="popup-close" aria-label="Close comments">&times;</button>
+      <h2 id="comments-title" style="margin-bottom: 20px; color: #9a64ff;">Comments</h2>
+      <div class="comments-popup"></div>
+      <form class="add-comment-form">
+        <textarea placeholder="Write your comment..." required></textarea>
+        <button type="submit">Add Comment</button>
+      </form>
+    </div>
+    <!-- Post Detail Popup -->
+<div id="post-popup" class="popup-overlay" aria-hidden="true">
+  <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="post-title-popup">
+    <button class="popup-close" aria-label="Close post popup">&times;</button>
+    <img src="" alt="" class="post-popup-image" style="width:100%; border-radius:8px; margin-bottom:20px; object-fit:cover; max-height:300px;" />
+    <h2 id="post-title-popup" style="margin-bottom: 10px; color:#9a64ff;"></h2>
+    <div class="post-popup-author" style="display:flex; align-items:center; gap:10px; margin-bottom: 15px;">
+      <img src="" alt="" class="post-popup-author-avatar" style="width:40px; height:40px; border-radius:50%; border:2px solid #9a64ff; object-fit:cover;" />
+      <span class="post-popup-author-name" style="color:#c4cbd0; font-weight:600;"></span>
+      <span class="post-popup-meta" style="margin-left:auto; font-size:0.85rem; color:#868e92;"></span>
+    </div>
+    <p class="post-popup-summary" style="color:#c1c9cd; margin-bottom: 20px; font-size:1.05rem; line-height:1.4;"></p>
+    
+    <div style="display:flex; align-items:center; gap:15px; margin-bottom: 20px;">
+      <button class="post-like-btn" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:8px; color:#868e92; font-weight:600; font-family: 'Cinzel', serif;">
+        <svg class="heart-icon" viewBox="0 0 24 24" width="24" height="24" fill="transparent" stroke="#868e92" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M12 21C12 21 4 14 4 8a4 4 0 0 1 8-3 4 4 0 0 1 8 3c0 6-8 13-8 13z" />
+        </svg>
+        <span class="like-count">0</span>
+      </button>
+      
+      <button class="comments-btn-popup" style="background:none; border:none; cursor:pointer; color:#868e92; font-weight:600; font-family: 'Cinzel', serif;">
+        Comments
+      </button>
+    </div>
+
+    <div class="comments-popup" style="max-height: 200px; overflow-y: auto; border-top: 1px solid #444; padding-top: 10px; margin-bottom: 20px;"></div>
+
+    <form class="add-comment-form-popup" style="display:flex; flex-direction: column; gap:10px;">
+      <textarea placeholder="Write your comment..." required style="resize: vertical; min-height: 70px; border-radius: 6px; border: 1px solid #555; background: #2a2a2a; color: #d0d8db; padding: 8px 10px; font-family: 'Cinzel', serif; font-size: 1rem;"></textarea>
+      <button type="submit" style="background: #9a64ff; border: none; padding: 10px 20px; font-weight: 600; font-family: 'Cinzel', serif; color: white; border-radius: 5px; cursor: pointer; transition: background 0.3s ease;">Add Comment</button>
+    </form>
+  </div>
+</div>
+
+  </div>
+
+  <script>
+    // Example author data (you can fetch this from a backend later)
+    const authors = {
+      1: {
+        name: "Helen",
+        avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+        bio: "Helen is a passionate food blogger and culinary expert who loves exploring exquisite cuisine from around the world."
+      },
+      2: {
+        name: "Victor",
+        avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+        bio: "Victor is a sports photographer with a keen eye for capturing the energy and excitement of soccer matches."
+      }
+    };
+
+    // Example comments data, keyed by post id
+    const commentsData = {
+      1: [
+        { author: "Alice", text: "Love this recipe! Definitely trying it this weekend." },
+        { author: "Mark", text: "Great post, very informative." }
+      ],
+      2: [
+        { author: "Sam", text: "Amazing shots! Soccer photography is an art." }
+      ]
+    };
+
+    const authorPopup = document.getElementById('author-popup');
+    const commentsPopup = document.getElementById('comments-popup');
+
+    const authorAvatarEls = document.querySelectorAll('.author-avatar, .author-name');
+    const commentsBtns = document.querySelectorAll('.comments-btn');
+
+    // Open author popup
+    authorAvatarEls.forEach(el => {
+      el.addEventListener('click', () => {
+        const authorId = el.getAttribute('data-author-id');
+        if (!authorId) return;
+
+        const author = authors[authorId];
+        if (!author) return;
+
+        const avatarImg = authorPopup.querySelector('.author-popup-avatar');
+        const nameTitle = authorPopup.querySelector('.author-popup-name');
+        const bioParagraph = authorPopup.querySelector('.author-popup-bio');
+
+        avatarImg.src = author.avatar;
+        avatarImg.alt = author.name + " avatar";
+        nameTitle.textContent = author.name;
+        bioParagraph.textContent = author.bio;
+
+        authorPopup.style.display = 'flex';
+        authorPopup.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    // Open comments popup
+    commentsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const postId = btn.getAttribute('data-post-id');
+        if (!postId) return;
+
+        const commentsContainer = commentsPopup.querySelector('.comments-popup');
+        const form = commentsPopup.querySelector('.add-comment-form');
+        const textarea = form.querySelector('textarea');
+
+        // Clear previous comments
+        commentsContainer.innerHTML = '';
+
+        // Load comments
+        (commentsData[postId] || []).forEach(comment => {
+          const commentEl = document.createElement('div');
+          commentEl.className = 'comment';
+
+          const authorEl = document.createElement('div');
+          authorEl.className = 'comment-author';
+          authorEl.textContent = comment.author;
+
+          const textEl = document.createElement('div');
+          textEl.className = 'comment-text';
+          textEl.textContent = comment.text;
+
+          commentEl.appendChild(authorEl);
+          commentEl.appendChild(textEl);
+          commentsContainer.appendChild(commentEl);
+        });
+
+        // Store current postId on form for adding new comment
+        form.dataset.postId = postId;
+
+        textarea.value = '';
+        commentsPopup.style.display = 'flex';
+        commentsPopup.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    // Close popups on close button
+    document.querySelectorAll('.popup-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.popup-overlay').style.display = 'none';
+        btn.closest('.popup-overlay').setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // Add new comment form submit handler
+    document.querySelector('.add-comment-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const postId = form.dataset.postId;
+      const textarea = form.querySelector('textarea');
+      const newCommentText = textarea.value.trim();
+      if (!newCommentText) return;
+
+      // For demo: add a new comment with author "You"
+      const newComment = { author: "You", text: newCommentText };
+      if (!commentsData[postId]) commentsData[postId] = [];
+      commentsData[postId].push(newComment);
+
+      // Append new comment to comments container
+      const commentsContainer = commentsPopup.querySelector('.comments-popup');
+      const commentEl = document.createElement('div');
+      commentEl.className = 'comment';
+
+      const authorEl = document.createElement('div');
+      authorEl.className = 'comment-author';
+      authorEl.textContent = newComment.author;
+
+      const textEl = document.createElement('div');
+      textEl.className = 'comment-text';
+      textEl.textContent = newComment.text;
+
+      commentEl.appendChild(authorEl);
+      commentEl.appendChild(textEl);
+      commentsContainer.appendChild(commentEl);
+
+      // Clear textarea
+      textarea.value = '';
+    });
+
+    // Optional: close popup on click outside content
+    [authorPopup, commentsPopup].forEach(popup => {
+      popup.addEventListener('click', e => {
+        if (e.target === popup) {
+          popup.style.display = 'none';
+          popup.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    const postPopup = document.getElementById('post-popup');
+const postPopupImage = postPopup.querySelector('.post-popup-image');
+const postPopupTitle = postPopup.querySelector('#post-title-popup');
+const postPopupAuthorAvatar = postPopup.querySelector('.post-popup-author-avatar');
+const postPopupAuthorName = postPopup.querySelector('.post-popup-author-name');
+const postPopupMeta = postPopup.querySelector('.post-popup-meta');
+const postPopupSummary = postPopup.querySelector('.post-popup-summary');
+const likeBtn = postPopup.querySelector('.post-like-btn');
+const likeCountSpan = postPopup.querySelector('.like-count');
+const commentsContainerPopup = postPopup.querySelector('.comments-popup');
+const addCommentFormPopup = postPopup.querySelector('.add-comment-form-popup');
+const commentsBtnPopup = postPopup.querySelector('.comments-btn-popup');
+
+let currentPostId = null;
+const likesData = {}; // to store like counts per post
+
+// Helper: get author info by id
+function getAuthorById(id) {
+  return authors[id] || { name: "Unknown", avatar: "" };
+}
+
+// Open post popup when clicking the post container (but not on buttons inside)
+document.querySelectorAll('.blog-post').forEach(postEl => {
+  postEl.addEventListener('click', (e) => {
+    // Prevent popup if clicking comments or heart icons inside post footer
+    if (e.target.closest('.comments-btn') || e.target.closest('.heart-icon')) return;
+
+    const postId = postEl.getAttribute('data-post-id');
+    if (!postId) return;
+    currentPostId = postId;
+
+    // Get data from the post element
+    const imageSrc = postEl.querySelector('.post-image').src;
+    const title = postEl.querySelector('.post-title').textContent;
+    const authorId = postEl.querySelector('.author-avatar').getAttribute('data-author-id');
+    const meta = postEl.querySelector('.post-meta').textContent;
+    const summary = postEl.querySelector('.post-summary').textContent;
+
+    const author = getAuthorById(authorId);
+
+    // Populate popup content
+    postPopupImage.src = imageSrc;
+    postPopupImage.alt = title;
+    postPopupTitle.textContent = title;
+    postPopupAuthorAvatar.src = author.avatar;
+    postPopupAuthorAvatar.alt = author.name + " avatar";
+    postPopupAuthorName.textContent = author.name;
+    postPopupMeta.textContent = meta;
+    postPopupSummary.textContent = summary;
+
+    // Set like count from stored data or 0
+    likeCountSpan.textContent = likesData[postId] || 0;
+    // Reset like button style
+    likeBtn.querySelector('svg').setAttribute('fill', 'transparent');
+    likeBtn.querySelector('svg').setAttribute('stroke', '#868e92');
+    likeBtn.style.color = '#868e92';
+
+    // Load comments
+    loadComments(postId);
+
+    // Show popup
+    postPopup.style.display = 'flex';
+    postPopup.setAttribute('aria-hidden', 'false');
+  });
+});
+
+// Close post popup
+postPopup.querySelector('.popup-close').addEventListener('click', () => {
+  postPopup.style.display = 'none';
+  postPopup.setAttribute('aria-hidden', 'true');
+});
+
+// Like button toggle and increment
+likeBtn.addEventListener('click', () => {
+  if (!currentPostId) return;
+  let liked = likeBtn.getAttribute('data-liked') === 'true';
+
+  if (liked) {
+    // Unlike
+    likesData[currentPostId] = (likesData[currentPostId] || 1) - 1;
+    likeBtn.setAttribute('data-liked', 'false');
+    likeBtn.querySelector('svg').setAttribute('fill', 'transparent');
+    likeBtn.querySelector('svg').setAttribute('stroke', '#868e92');
+    likeBtn.style.color = '#868e92';
+  } else {
+    // Like
+    likesData[currentPostId] = (likesData[currentPostId] || 0) + 1;
+    likeBtn.setAttribute('data-liked', 'true');
+    likeBtn.querySelector('svg').setAttribute('fill', '#9a64ff');
+    likeBtn.querySelector('svg').setAttribute('stroke', '#9a64ff');
+    likeBtn.style.color = '#9a64ff';
+  }
+  likeCountSpan.textContent = likesData[currentPostId];
+});
+
+// Load comments helper
+function loadComments(postId) {
+  commentsContainerPopup.innerHTML = '';
+  (commentsData[postId] || []).forEach(comment => {
+    const commentEl = document.createElement('div');
+    commentEl.className = 'comment';
+    commentEl.style.borderBottom = '1px solid #444';
+    commentEl.style.padding = '8px 10px';
+
+    const authorEl = document.createElement('div');
+    authorEl.className = 'comment-author';
+    authorEl.textContent = comment.author;
+    authorEl.style.color = '#9a64ff';
+    authorEl.style.fontWeight = '700';
+    authorEl.style.fontSize = '0.9rem';
+    authorEl.style.marginBottom = '4px';
+
+    const textEl = document.createElement('div');
+    textEl.className = 'comment-text';
+    textEl.textContent = comment.text;
+    textEl.style.color = '#d0d8db';
+    textEl.style.fontSize = '0.9rem';
+
+    commentEl.appendChild(authorEl);
+    commentEl.appendChild(textEl);
+
+    commentsContainerPopup.appendChild(commentEl);
+  });
+}
+
+// Add comment form submit
+addCommentFormPopup.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!currentPostId) return;
+
+  const textarea = addCommentFormPopup.querySelector('textarea');
+  const commentText = textarea.value.trim();
+  if (!commentText) return;
+
+  // For demo, add new comment with static author "You"
+  if (!commentsData[currentPostId]) commentsData[currentPostId] = [];
+  commentsData[currentPostId].push({ author: "You", text: commentText });
+
+  // Clear textarea
+  textarea.value = '';
+
+  // Reload comments
+  loadComments(currentPostId);
+});
+
+  </script>
+    <footer class="footer">
+    J.AIZANN
+    <span>Every moment preserved forevermore.</span>
+  </footer>
+
+</body>
+</html>

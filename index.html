@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>J.Aizann Photography | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --purple: #44126e;
+      --dark: #252326;
+      --footer-bg: #44126e;
+    }
+    body {
+      background-color: var(--dark);
+      font-family: 'Avenir', sans-serif;
+      color: #fff;
+    }
+    h1, h2, h3, .serif { font-family: 'Cinzel', serif; }
+    a { text-decoration: none; transition: color 0.3s ease; }
+
+    /* === UPDATED NAVBAR STYLE FROM BLOG PAGE === */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #af53ee;
+      font-family: 'Cinzel', serif;
+    }
+
+    .navbar-logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #af53ee;
+    }
+
+    .navbar-links {
+      list-style: none;
+      display: flex;
+      gap: 150px;
+    }
+
+    .navbar-links li a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-links li a:hover,
+    .navbar-links li a.active {
+      color: #af53ee;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-icon {
+      height: 20px;
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+    }
+
+    .login-link {
+      color: #af53ee;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+    }
+
+    /* ====== END NAVBAR UPDATE ====== */
+
+    .hero {
+      width: 100vw;
+      min-height: 390px;
+      height: 42vw;
+      max-height: 450px;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero img {
+      width: 100vw;
+      height: 100%;
+      max-height: 500px;
+      min-height: 390px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .overlay-title {
+      position: absolute;
+      left: 50%;
+      top: 53%;
+      transform: translate(-50%,-50%);
+      font-family: 'Cinzel', serif;
+      color: #fff;
+      font-size: 3.5rem;
+      text-shadow: 0 4px 32px #0009, 0 1px 0 #44126e;
+      letter-spacing: .09em;
+      line-height: 1.05;
+      font-weight: bold;
+      pointer-events: none;
+      opacity: .93;
+      text-align: center;
+      width: 98vw;
+      white-space: pre-line;
+      user-select: none;
+      z-index: 2;
+    }
+
+    .welcome {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 45px 24px 34px;
+      border-radius: 10px;
+      margin: 20px auto 56px;
+      max-width: 540px;
+      box-shadow: 0 3px 32px #0006;
+      border: 1.6px solid #af53ee;
+      position: relative;
+      z-index: 3;
+    }
+    .welcome h1 {
+      font-size: 5.08rem;
+      color: #af53ee;
+      margin: 0 0 12px 0;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .blog-promo {
+      background: #44126e;
+      padding: 58px 0 70px 0;
+      margin: 56px 0 0 0;
+    }
+    .blog-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #333;
+      padding: 48px 32px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .blog-inner h2 { font-size: 2.4rem; margin-bottom: 20px; }
+    .blog-inner a {
+      color: #fff;
+      background: #af53ee;
+      padding: 10px 32px;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      display: inline-block;
+      margin-top: 20px;
+      font-weight: 500;
+      transition: background .15s;
+    }
+    .blog-inner a:hover { background: #933fd9; }
+
+    .features-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2vw;
+      justify-content: center;
+      align-items: center;
+      background: #b6ebfa;
+      padding: 40px 20px;
+      margin-top: -6px;
+    }
+    .features-row img {
+      width: 220px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px #2223;
+    }
+    .testimonials {
+      background: #44126e;
+      padding: 60px 0 70px 0;
+    }
+    .testimonials-title {
+      font-size: 2.06rem;
+      text-align: center;
+      margin-bottom: 32px;
+      font-family: 'Cinzel', serif;
+      color: #fff;
+    }
+    .testimonials-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 29px;
+      max-width: 1020px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+    .testimonial-card {
+      padding: 34px 22px 32px 22px;
+      border-radius: 8px;
+      width: 226px;
+      color: #222;
+      background: #fff;
+      font-size: 1.07rem;
+      min-height: 150px;
+      box-shadow: 0 2px 14px #0002;
+    }
+    .testimonial-card span {
+      font-size: 1.4em;
+      color: #664;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .testimonial-card.yellow { background: #ffe978; }
+    .testimonial-card.blue   { background: #99e3fa; }
+    .testimonial-card.green  { background: #c3f3c4; }
+    .testimonial-name { font-weight: bold; display: block; margin-top: 11px; color: #222; }
+
+    .footer {
+      background: #44126e;
+      color: #fff;
+      padding: 36px 0 10px 0;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      margin-top: 80px;
+    }
+    .footer span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.13rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 950px){
+      .navbar-links { gap: 40px; }
+    }
+    @media (max-width: 700px) {
+      .navbar { flex-direction: column; height: auto; }
+      .navbar-links { flex-direction: column; gap: 10px; }
+      .features-row img { width: 100%; max-width: 290px;}
+      .testimonial-card { width: 90vw; max-width: 285px;}
+      .overlay-title { font-size: 2.2rem; }
+      .welcome { max-width: 98vw;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">J.AIZANN</div>
+    <ul class="navbar-links">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <a href="#"><img src="https://ext.same-assets.com/3815411511/378119739.svg" alt="search" class="search-icon"></a>
+      <a href="login.html" class="login-link">Log In</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <img src="https://ext.same-assets.com/2560812380/3386631469.jpeg" alt="Camera Lens">
+    <div class="overlay-title">
+      J.AIZANN
+    </div>
+  </section>
+
+  <section class="welcome">
+    <h1>WELCOME</h1>
+    <p style="font-size: 20px;">
+      Here, we celebrate the art of capturing moments that tell stories and evoke emotions. Explore our portfolio and join us on a journey through the lens where each picture is a glimpse into a unique world. Thank you for visiting—we hope you find inspiration in our work!
+    </p>
+  </section>
+
+  <section class="blog-promo">
+    <div class="blog-inner">
+      <h2 class="serif">Join our Blog Community</h2>
+      <p>Connect with fellow photography enthusiasts! Share your passion, learn new tips, and stay inspired in our vibrant creative space.</p>
+      <a href="login.html">Log In / Sign Up</a>
+    </div>
+  </section>
+
+  <section class="features-row">
+    <img src="https://ext.same-assets.com/2560812380/1065910725.jpeg" alt="Feature 1">
+    <img src="https://ext.same-assets.com/2560812380/2552690710.jpeg" alt="Feature 2">
+    <img src="https://ext.same-assets.com/2560812380/3351442060.jpeg" alt="Feature 3">
+    <img src="https://ext.same-assets.com/2560812380/1840394464.jpeg" alt="Feature 4">
+  </section>
+
+  <section class="testimonials">
+    <h2 class="testimonials-title serif">TESTIMONIALS</h2>
+    <div class="testimonials-list">
+      <div class="testimonial-card yellow">
+        <span>“</span>This website made it so easy to find the perfect photographer for my event.<br><br>
+        <span class="testimonial-name">Simone Woods</span>
+      </div>
+      <div class="testimonial-card blue">
+        <span>“</span>This site has been invaluable for my creative growth and inspiration.<br><br>
+        <span class="testimonial-name">Nicole Yang</span>
+      </div>
+      <div class="testimonial-card green">
+        <span>“</span>It’s a fantastic resource to improve my skills and connect with others.<br><br>
+        <span class="testimonial-name">Calvin Smith</span>
+      </div>
+      <div class="testimonial-card yellow">
+        <span>“</span>This platform inspires me to keep learning and capturing great shots.<br><br>
+        <span class="testimonial-name">Suzanne Levis</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    J.AIZANN
+    <span>Every moment preserved forevermore.</span>
+  </footer>
+
+</body>
+</html>

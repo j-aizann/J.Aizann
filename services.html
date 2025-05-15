@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>J.Aizann Photography | Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --purple: #44126e;
+      --dark: #252326;
+      --footer-bg: #44126e;
+    }
+    body {
+      background-color: var(--dark);
+      font-family: 'Avenir', sans-serif;
+      color: #fff;
+    }
+    h1,
+    h2,
+    h3,
+    .serif {
+      font-family: 'Cinzel', serif;
+    }
+    a {
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    /* === NAVBAR STYLE === */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #af53ee;
+      font-family: 'Cinzel', serif;
+    }
+
+    .navbar-logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #af53ee;
+    }
+
+    .navbar-links {
+      list-style: none;
+      display: flex;
+      gap: 150px;
+    }
+
+    .navbar-links li a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-links li a:hover,
+    .navbar-links li a.active {
+      color: #af53ee;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-icon {
+      height: 20px;
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+    }
+
+    .login-link {
+      color: #af53ee;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+    }
+    /* === END NAVBAR STYLE === */
+
+    /* === SERVICES LAYOUT & STYLE === */
+    .services-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .services-section h2 {
+      text-align: center;
+      font-size: 2.6rem;
+      color: #af53ee;
+      margin-bottom: 48px;
+    }
+
+    .service-card {
+      background: #333;
+      border-radius: 10px;
+      padding: 32px 28px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 32px #0006;
+      border: 1.6px solid #af53ee;
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: #af53ee;
+    }
+
+    .service-card p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #ddd;
+    }
+
+     .footer {
+      background: #44126e;
+      color: #fff;
+      padding: 36px 0 10px 0;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      margin-top: 80px;
+    }
+    .footer span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.13rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0;
+    }
+
+
+    @media (max-width: 950px) {
+      .navbar-links {
+        gap: 40px;
+      }
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        height: auto;
+      }
+      .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">J.AIZANN</div>
+    <ul class="navbar-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a class="active" href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <a href="#"><img src="https://ext.same-assets.com/3815411511/378119739.svg" alt="search" class="search-icon" /></a>
+      <a href="login.html" class="login-link">Log In</a>
+    </div>
+  </nav>
+
+  <section class="services-section">
+    <h2 class="serif">Our Services</h2>
+
+    <div class="service-card">
+      <h3>Wedding Photography</h3>
+      <p>
+        Capture the magic of your special day with our professional wedding photography services. We specialize
+        in candid moments, romantic portraits, and all the details that make your wedding unique.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>Portrait Sessions</h3>
+      <p>
+        Whether it's individual, family, or corporate portraits, we provide tailored sessions that highlight your
+        personality and style in every shot.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>Event Coverage</h3>
+      <p>
+        From corporate events to private parties, our team ensures every significant moment is documented with
+        precision and creativity.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    J.AIZANN
+    <span>Every moment preserved forevermore.</span>
+  </footer>
+
+</body>
+</html>

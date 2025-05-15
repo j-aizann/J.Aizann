@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About | J.Aizann Photography</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
+  /* === Reset & Root Colors === */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --purple: #44126e;
+    --dark: #252326;
+    --footer-bg: #44126e;
+    --link-hover: #af53ee;
+  }
+
+  /* === Body and Typography === */
+  body {
+    background-color: var(--dark);
+    font-family: 'Avenir', sans-serif;
+    color: #fff;
+  }
+  h1, h2, h3, .serif {
+    font-family: 'Cinzel', serif;
+  }
+  a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+    color: #fff;
+  }
+
+  /* === NAVBAR === */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--link-hover);
+    font-family: 'Cinzel', serif;
+  }
+  .navbar-logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--link-hover);
+  }
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 150px;
+  }
+  .navbar-links li a {
+    color: #fff;
+  }
+  .navbar-links li a:hover,
+  .navbar-links li a.active {
+    color: var(--link-hover);
+  }
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .search-icon {
+    height: 20px;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+  }
+  .login-link {
+    color: var(--link-hover);
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+  }
+
+  /* === Top Section === */
+  .top-section {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto 40px;
+    border: 6px solid #280046;
+    padding: 10px;
+  }
+  .top-section .image-container {
+    flex: 1 1 60%;
+    max-width: 60%;
+  }
+  .top-section .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  .top-section .content-container {
+    flex: 1 1 40%;
+    max-width: 40%;
+    background-color: var(--purple);
+    border: 4px solid #280046;
+    padding: 20px 25px;
+    color: #ddd;
+    overflow-y: auto;
+    max-height: 620px;
+  }
+  .content-container h2 {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+  .content-container h3 {
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--link-hover);
+    padding-bottom: 5px;
+    cursor: default;
+    color: #ddd;
+  }
+  .content-container p {
+    font-size: 0.75rem;
+    margin: 10px 0 15px;
+    color: #ddd;
+    text-align: justify;
+  }
+  .content-container a {
+    color: var(--link-hover);
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 0.75rem;
+  }
+
+  /* === Bottom Section === */
+  .bottom-section {
+    background-color: var(--purple);
+    padding: 20px 0 40px;
+  }
+  .bottom-section .team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+  }
+  .team-container h2 {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+    color: #fff;
+  }
+  .team-container p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    font-size: 0.8rem;
+    color: #ddd;
+  }
+
+  /* Team members scroll container */
+  .team-members {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0 10px;
+  }
+  .team-member {
+    background: var(--dark);
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    width: 120px;
+    flex-shrink: 0;
+    color: var(--link-hover);
+  }
+  .team-member img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px 4px 0 0;
+  }
+  .team-member-info {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    font-size: 0.65rem;
+    color: white;
+    text-align: left;
+  }
+  .team-member-info strong {
+    display: block;
+    font-weight: 700;
+  }
+
+ .footer {
+      background: #44126e;
+      color: #fff;
+      padding: 36px 0 10px 0;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      margin-top: 80px;
+    }
+    .footer span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.13rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0;
+    }
+
+  /* Scrollbar for team container */
+  .team-members::-webkit-scrollbar {
+    height: 8px;
+  }
+  .team-members::-webkit-scrollbar-track {
+    background: var(--purple);
+  }
+  .team-members::-webkit-scrollbar-thumb {
+    background-color: var(--dark);
+    border-radius: 10px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .top-section {
+      flex-direction: column;
+      max-height: none;
+    }
+    .top-section .image-container,
+    .top-section .content-container {
+      max-width: 100%;
+      flex: 1 1 auto;
+      max-height: none;
+    }
+    .content-container {
+      border: none;
+      max-height: none;
+    }
+    .team-members {
+      justify-content: center;
+    }
+    .navbar-links {
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">J.AIZANN</div>
+    <ul class="navbar-links">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <a href="#"><img src="https://ext.same-assets.com/3815411511/378119739.svg" alt="search" class="search-icon"></a>
+      <a href="login.html" class="login-link">Log In</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="top-section">
+      <div class="image-container">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Photography studio" />
+      </div>
+      <div class="content-container">
+        <h2>About J.Aizann</h2>
+        <h3>Introduction</h3>
+        <p>At J.Aizann, we believe photography is more than taking pictures—it’s about capturing the essence of every moment, person, and story. We offer tailored photography services that reflect your personality, aesthetic preferences, and unique visual brand. Whether you’re preparing to host the camera for the first time or you’re a seasoned veteran, we deliver authentic, professional results.</p>
+        <h3>Our Services</h3>
+        <p>We provide a range of photography services including portrait sessions, event coverage, commercial and brand photography, and couples or family shoots. Each service is crafted to meet your unique needs, with attention to lighting, composition, and mood to create high-impact visuals. Whether you’re a person, a professional, or a brand seeking consistent narratives, we bring creativity and passion to every project.</p>
+        <h3>Book a Shoot</h3>
+        <p>Booking with us is simple and flexible. Visit our Book a Shoot page to explore session types, check availability, and reserve your preferred date and time. If you have a specific concept or need guidance in planning your shoot, we’re here to collaborate and ensure everything aligns with your vision from the day of the session.</p>
+        <h3>Photography Sessions</h3>
+        <p>Photography Sessions vary based on the project to be realized, strengths, and seasonal themes of our services. We give the you through the process from concept and styling consultations to posing and direction so you take the best shots and create memorable photographs. Our focus is on storytelling and visual authenticity using natural lighting, mood & technical finesse.</p>
+        <h3>Edit With Us</h3>
+        <p>Editing with J.Aizann is an inclusive process that enhances the visual narrative. Our editing platform with expert retouching, color correction, and final adjustments. Whether you’re a photographer or shooting model, we guarantee to elevate your editing process, ensuring beautiful and artistic results for every edit.</p>
+        <h3>Blog Community</h3>
+        <p>Our blog is more than just photography news and stories—we welcome writers, photographers, creatives, and enthusiasts to share ideas, challenges, wins, personal narratives, and inspiration. We’re a vibrant community focused on growth, support, and collaboration, and invite you to grow alongside us in learning, innovation, and friendship.</p>
+      </div>
+    </section>
+
+    <section class="bottom-section">
+      <div class="team-container">
+        <h2>Our Team.</h2>
+        <p>Welcome to our photography team! We are a passionate group of professionals dedicated to capturing life’s most precious moments. With a keen eye for detail and a commitment to creativity, we strive to provide stunning imagery that your stories deserve. Whether it’s a wedding, portrait session, or corporate event, we make sure you can relive through our lens.</p>
+        <div class="team-members">
+          <div class="team-member">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Marinette" />
+            <div class="team-member-info">
+              <strong>Marinette</strong>
+              Art Director
+            </div>
+          </div>
+          <div class="team-member">
+            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Adrianne Agreste" />
+            <div class="team-member-info">
+              <strong>Adrianne Agreste</strong>
+              Tech Lead
+            </div>
+          </div>
+          <div class="team-member">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Alexa Young" />
+            <div class="team-member-info">
+              <strong>Alexa Young</strong>
+              Social Media Manager
+            </div>
+          </div>
+          <div class="team-member">
+            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Robert Rose" />
+            <div class="team-member-info">
+              <strong>Robert Rose</strong>
+              Product Designer
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>J.AIZANN<br /><small>Every moment preserved forevermore</small></p>
+    </footer>
+  </main>
+
+</body>
+</html>

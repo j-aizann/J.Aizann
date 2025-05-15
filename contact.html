@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | J.Aizann Photography</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+ <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --purple: #44126e;
+      --dark: #252326;
+      --footer-bg: #44126e;
+    }
+    body {
+      background-color: var(--dark);
+      font-family: 'Avenir', sans-serif;
+      color: #fff;
+    }
+    h1, h2, h3, .serif { font-family: 'Cinzel', serif; }
+    a { text-decoration: none; transition: color 0.3s ease; }
+
+    /* === UPDATED NAVBAR STYLE FROM BLOG PAGE === */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #af53ee;
+      font-family: 'Cinzel', serif;
+    }
+
+    .navbar-logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #af53ee;
+    }
+
+    .navbar-links {
+      list-style: none;
+      display: flex;
+      gap: 150px;
+    }
+
+    .navbar-links li a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-links li a:hover,
+    .navbar-links li a.active {
+      color: #af53ee;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-icon {
+      height: 20px;
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+    }
+
+    .login-link {
+      color: #af53ee;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+    }
+
+
+    /* Contact Page Styling */
+    .banner {
+      background-color: #4b0082;
+      padding: 50px 20px;
+      text-align: center;
+      color: white;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+    }
+
+    .contact-box {
+      background-color: #2c2c2c;
+      margin: -50px auto 50px;
+      max-width: 800px;
+      display: flex;
+      justify-content: space-around;
+      padding: 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      color: white;
+      font-family: 'Cinzel', serif;
+      text-transform: none;
+    }
+
+    .contact-section {
+      text-align: center;
+    }
+
+    .contact-section h3 {
+      color: #9a64ff;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .contact-section p {
+      color: #d0d8db;
+      font-size: 1rem;
+      word-break: break-word;
+      text-transform: none;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.2rem;
+      font-family: Arial, sans-serif;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      height: 24px;
+      background-color: #111;
+      border-radius: 50%;
+      text-decoration: none;
+    }
+
+    .social-icons a.facebook::before {
+      content: "\f09a";
+      font-family: "Font Awesome 5 Brands";
+      font-weight: 900;
+    }
+    .social-icons a.instagram::before {
+      content: "\f16d";
+      font-family: "Font Awesome 5 Brands";
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+     .footer {
+      background: #44126e;
+      color: #fff;
+      padding: 36px 0 10px 0;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      margin-top: 80px;
+    }
+    .footer span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.13rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">J.AIZANN</div>
+    <ul class="navbar-links">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <a href="#"><img src="https://ext.same-assets.com/3815411511/378119739.svg" alt="search" class="search-icon"></a>
+      <a href="login.html" class="login-link">Log In</a>
+    </div>
+  </nav>
+
+  <section class="banner">CONTACT US FOR INQUIRIES</section>
+
+  <section class="contact-box">
+    <div class="contact-section">
+      <h3>Call</h3>
+      <p>09123456789</p>
+    </div>
+    <div class="contact-section">
+      <h3>Email</h3>
+      <p>jade.dalaguiado@sccpag.edu.ph</p>
+    </div>
+    <div class="contact-section">
+      <h3>Follow</h3>
+      <div class="social-icons">
+        <a href="#" class="facebook" aria-label="Facebook"></a>
+        <a href="#" class="instagram" aria-label="Instagram"></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <img src="https://via.placeholder.com/400x300?text=Gallery+Image+1" alt="Gallery Image 1" />
+    <img src="https://via.placeholder.com/400x300?text=Gallery+Image+2" alt="Gallery Image 2" />
+    <img src="https://via.placeholder.com/400x300?text=Gallery+Image+3" alt="Gallery Image 3" />
+  </section>
+
+    <footer class="footer">
+    J.AIZANN
+    <span>Every moment preserved forevermore.</span>
+  </footer>
+
+</body>
+</html>
